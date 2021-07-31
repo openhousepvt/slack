@@ -10,7 +10,7 @@ function jobColor(status: string): string | undefined {
 }
 
 function stepIcon(status: string): string {
-  if (status.toLowerCase() === 'success') return ':heavy_check_mark:'
+  if (status.toLowerCase() === 'success') return ':white_check_mark:'
   if (status.toLowerCase() === 'failure') return ':x:'
   if (status.toLowerCase() === 'cancelled') return ':exclamation:'
   if (status.toLowerCase() === 'skipped') return ':no_entry_sign:'
