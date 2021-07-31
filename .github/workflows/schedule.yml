@@ -21,4 +21,6 @@ jobs:
         status: ${{ job.status }}
         steps: ${{ toJson(steps) }}
         channel: '#actions'
+        version: '1.0.0'
+        platform: 'Android'
       if: always()

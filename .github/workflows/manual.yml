@@ -20,4 +20,6 @@ jobs:
         steps: ${{ toJson(steps) }}
         channel: '#actions'
         downloadUrl: "https://github.com/openhousepvt"
+        version: '1.0.0'
+        platform: 'Android'
       if: always()
