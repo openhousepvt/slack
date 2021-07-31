@@ -22,7 +22,8 @@ async function send(
   jobName: string,
   jobStatus: string,
   jobSteps: object,
-  channel?: string
+  channel?: string,
+  downloadUrl?: string
 ): Promise<IncomingWebhookResult> {
   const eventName = process.env.GITHUB_EVENT_NAME
   const workflow = process.env.GITHUB_WORKFLOW
@@ -127,6 +128,26 @@ async function send(
     })
   }
 
+  const blocks = []
+  if (downloadUrl) {
+    blocks.push({
+      type: 'actions',
+      elements: [
+        {
+          type: 'button',
+          text: {
+            type: 'plain_text',
+            emoji: true,
+            text: 'Approve'
+          },
+          action_id: 'download-button',
+          url: downloadUrl,
+          style: 'primary'
+        }
+      ]
+    })
+  }
+
   const message = {
     username: 'GitHub Action',
     icon_url: 'https://octodex.github.com/images/original.png',
@@ -141,6 +162,7 @@ async function send(
         mrkdwn_in: ['text' as const],
         text,
         fields,
+        blocks,
         footer: `<${repositoryUrl}|${repositoryName}> #${runNumber}`,
         footer_icon: 'https://github.githubassets.com/favicon.ico',
         ts: ts.toString()
