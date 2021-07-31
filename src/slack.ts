@@ -1,6 +1,7 @@
 import * as core from '@actions/core'
 import {IncomingWebhook, IncomingWebhookResult} from '@slack/webhook'
 import {KnownBlock, Block} from '@slack/types'
+import moment from 'moment'
 
 function jobColor(status: string): string | undefined {
   if (status.toLowerCase() === 'success') return 'good'
@@ -26,14 +27,14 @@ async function send(
   const branch = process.env.GITHUB_HEAD_REF || (process.env.GITHUB_REF?.replace('refs/heads/', '') as string)
   const actor = process.env.GITHUB_ACTOR
 
-  const ts = Math.round(new Date().getTime() / 1000)
+  const ts = moment(new Date()).format('Do MMM YY [at] hh:mm')
 
   const blocks: (KnownBlock | Block)[] = [
     {
       type: 'section',
       text: {
         type: 'mrkdwn',
-        text: ':iphone: *New  build available for download*'
+        text: `:iphone: *New ${platform} build available for download*`
       }
     },
     {
@@ -61,7 +62,7 @@ async function send(
         },
         {
           type: 'mrkdwn',
-          text: `*Date:*\n${ts.toString()}`
+          text: `*Date:*\n${ts}`
         },
         {
           type: 'mrkdwn',
