@@ -76,6 +76,7 @@ jobs:
         status: ${{ job.status }}
         steps: ${{ toJson(steps) }}
         channel: '#actions'
+        downloadUrl: "https://github.com/openhousepvt"
       if: always()
   build:
     runs-on: ubuntu-latest
