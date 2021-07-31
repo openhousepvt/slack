@@ -138,7 +138,7 @@ async function send(
           text: {
             type: 'plain_text',
             emoji: true,
-            text: 'Approve'
+            text: 'Download'
           },
           action_id: 'download-button',
           url: downloadUrl,

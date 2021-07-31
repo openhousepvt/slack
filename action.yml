@@ -11,6 +11,9 @@ inputs:
   channel:
     description: Override default channel with different channel or username
     required: false
+  downloadUrl:
+    description: Artifact download URL
+    required: false
 runs:
   using: 'node12'
   main: 'dist/index.js'
