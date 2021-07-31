@@ -108,6 +108,7 @@ test('push event to slack', async () => {
               ':no_entry_sign: install-deps\n:no_entry_sign: hooks\n:no_entry_sign: lint\n:no_entry_sign: types\n:no_entry_sign: unit-test\n:no_entry_sign: integration-test'
           }
         ],
+        blocks: [],
         footer: '<https://github.com/act10ns/slack|act10ns/slack> #8',
         footer_icon: 'https://github.githubassets.com/favicon.ico',
         ts: expect.stringMatching(/[0-9]+/)

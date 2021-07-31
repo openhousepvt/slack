@@ -66,6 +66,7 @@ test('schedule event to slack', async () => {
         text:
           '*<https://github.com/act10ns/slack/actions/runs/363600556|Workflow _schedule-test_ job _Build and Test_ triggered by _schedule_ is _Success_>* for <https://github.com/act10ns/slack/commits/master|`master`>\n<https://github.com/act10ns/slack/commit/09a6b2c9|`09a6b2c9`> - Schedule `*/15 * * * *`',
         fields: [],
+        blocks: [],
         footer: '<https://github.com/act10ns/slack|act10ns/slack> #179',
         footer_icon: 'https://github.githubassets.com/favicon.ico',
         ts: expect.stringMatching(/[0-9]+/)
