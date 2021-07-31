@@ -2,7 +2,7 @@
   "name": "slack",
   "version": "1.2.2",
   "private": true,
-  "description": "Notify Slack of GitHub Actions job and step status.",
+  "description": "Notify Slack of GitHub Release",
   "main": "lib/main.js",
   "scripts": {
     "build": "tsc",
@@ -12,18 +12,18 @@
     "lint:fix": "eslint --fix src/**/*.ts",
     "pack": "ncc build",
     "test": "jest",
-    "all": "npm run build && npm run format && npm run lint && npm run pack && npm test"
+    "all": "npm run build && npm run format && npm run lint && npm run pack"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/act10ns/slack.git"
+    "url": "https://github.com/openhousepvt/slack.git"
   },
   "keywords": [
     "actions",
     "slack",
     "notify"
   ],
-  "author": "satterly",
+  "author": "arch10",
   "license": "MIT",
   "dependencies": {
     "@actions/core": "^1.2.6",

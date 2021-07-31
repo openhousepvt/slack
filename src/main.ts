@@ -13,14 +13,14 @@ async function run(): Promise<void> {
     core.debug(JSON.stringify(readEvent()))
 
     const url = process.env.SLACK_WEBHOOK_URL as string
-    const jobName = process.env.GITHUB_JOB as string
     const jobStatus = core.getInput('status', {required: true}).toUpperCase()
-    const jobSteps = JSON.parse(core.getInput('steps', {required: false}) || '{}')
     const channel = core.getInput('channel', {required: false})
     const downloadUrl = core.getInput('downloadUrl', {required: false})
+    const version = core.getInput('version', {required: true})
+    const platform = core.getInput('platform', {required: true})
 
     if (url) {
-      await send(url, jobName, jobStatus, jobSteps, channel, downloadUrl)
+      await send(url, jobStatus, version, platform, channel, downloadUrl)
       core.debug('Sent to Slack.')
     } else {
       core.info('No "SLACK_WEBHOOK_URL" secret configured. Skip.')

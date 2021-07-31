@@ -5,15 +5,18 @@ inputs:
   status:
     description: Specify success, failure, cancelled or a custom status.
     required: true
-  steps:
-    description: Report on the status of individual steps
-    required: false
   channel:
     description: Override default channel with different channel or username
     required: false
   downloadUrl:
     description: Artifact download URL
     required: false
+  version:
+    description: Artifact version
+    required: true
+  platform:
+    description: Artifact platform
+    required: true  
 runs:
   using: 'node12'
   main: 'dist/index.js'
