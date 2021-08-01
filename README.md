@@ -1,8 +1,8 @@
-![build-test](https://github.com/act10ns/slack/workflows/build-test/badge.svg)
+![Build](https://github.com/openhousepvt/slack/workflows/build-test/badge.svg)
 
-# Slack messages for GitHub Action workflows, jobs and steps
+# Notify Slack of GitHub Release
 
-A simple and flexible Slack integration with GitHub Actions.
+A simple and flexible Slack integration with GitHub Release.
 
 <img src="./docs/images/example1.png" width="540" title="Slack Example #1">
 
@@ -36,16 +36,19 @@ or a hardcoded custom status such as "starting" or "in progress":
       with: 
         status: in progress
 
-#### `steps` (optional)
+#### `version` (required)
 
-The individual status of job steps can be included in the Slack
-message using:
+The `version` must be defined. It is the release version of your project:
 
       with: 
-        status: ${{ job.status }}
-        steps: ${{ toJson(steps) }}
+        version: '1.0.0'
 
-**Note: Only steps that have a "step id" will be reported on. See example below.**
+#### `platform` (required)
+
+The `platform` must be defined. It is the release platform for which this release is for:
+
+      with: 
+        platform: 'Android'
 
 #### `channel` (optional)
 
@@ -54,6 +57,8 @@ use:
 
       with: 
         status: ${{ job.status }}
+        version: '1.0.0'
+        platform: 'Android'
         channel: '#workflows'
 
 **Note: To override the channel the Slack webhook URL must be an
@@ -83,23 +88,6 @@ following as the last step of the job:
       with: 
         status: ${{ job.status }}
       if: always()
-
-To include statuses for each Job Step in the message include the
-`steps` input (making sure to use the `toJSON` function):
-
-    - uses: act10ns/slack@v1
-      with: 
-        status: ${{ job.status }}
-        steps: ${{ toJson(steps) }}
-      if: always()
-
-Only steps that have a "step id" assigned to them will be reported on:
-
-    - name: Build
-      id: build
-      run: |
-        npm install
-        npm run build
 
 The default Slack channel for the configured webhook can be overridden
 using either another channel name `#channel` or a username `@username`.
@@ -132,11 +120,6 @@ or
           IMAGE_NAME: ${{ github.repository }}/alerta-cli
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         steps:
-          - uses: act10ns/slack@v1
-            with:
-              status: starting
-              channel: '#workflows'
-            if: always()
           - name: Checkout
             uses: actions/checkout@v2
           - name: Variables
@@ -157,17 +140,14 @@ or
           - name: Publish Image
             id: docker-push
             run: docker push $REPOSITORY_URL/$IMAGE_NAME
-
           - uses: act10ns/slack@v1
             with:
               status: ${{ job.status }}
-              steps: ${{ toJson(steps) }}
+              version: '1.0.0'
+              platform: 'Docker'
               channel: '#workflows'
-            if: always()
+            if: success()
 
-The above "Docker Build and Push" workflow will appear in Slack as:
-
-<img src="./docs/images/example2.png" width="700" title="Slack Example #2">
 
 ## Troubleshooting
 
@@ -179,6 +159,7 @@ See https://docs.github.com/en/free-pro-team@latest/actions/managing-workflow-ru
 
 ## References
 
+* Slack messages for GitHub Action https://github.com/act10ns/slack
 * GitHub Actions Toolkit https://github.com/actions/toolkit/tree/main/packages/github
 * GitHub Actions Starter Workflows https://github.com/actions/starter-workflows
 * Slack Incoming Webhooks https://slack.com/apps/A0F7XDUAZ-incoming-webhooks?next_id=0
@@ -189,4 +170,4 @@ See https://docs.github.com/en/free-pro-team@latest/actions/managing-workflow-ru
 
 ## License
 
-Copyright (c) 2020 Nick Satterly. Available under the MIT License.
+Copyright (c) 2021 OpenHouse Pvt. Available under the MIT License.

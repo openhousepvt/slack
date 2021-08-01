@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://github.com/actions/typescript-action/actions"><img alt="typescript-action status" src="https://github.com/actions/typescript-action/workflows/build-test/badge.svg"></a>
+  <a href="https://github.com/actions/openhousepvt/actions"><img alt="openhousepvt action status" src="https://github.com/openhousepvt/slack/workflows/build-test/badge.svg"></a>
 </p>
 
 # Create a JavaScript Action using TypeScript
@@ -100,20 +100,3 @@ See the [actions tab](https://github.com/actions/javascript-action/actions) for 
 
 After testing you can [create a v1 tag](https://github.com/actions/toolkit/blob/master/docs/action-versioning.md) to reference the stable and latest V1 action
 
-## Release
-
-```bash
-$ make build
-$ vi package.json
-$ vi package-lock.json
-$ git add .
-$ git commit -m 'Bump version 1.0.13 -> 1.1.0'
-$ git tag -a v1.1.0 -m 'version 1.1.0'
-$ git push --follow-tags
-$ git tag -fa v1 -m "Update v1 tag"
-$ git push origin v1 --force
-```
-
-Go to [GitHub Releases]() and create a new release
-
-See 
