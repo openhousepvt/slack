@@ -14,7 +14,7 @@ jobs:
       run: |
         npm install
         npm run all
-    - uses: ./
+    - uses: openhousepvt/slack@v1
       with:
         status: ${{ job.status }}
         steps: ${{ toJson(steps) }}
