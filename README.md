@@ -84,7 +84,7 @@ matches. All possible status check functions are:
 To send a Slack message when a workflow job has completed add the
 following as the last step of the job:
 
-    - uses: act10ns/slack@v1
+    - uses: openhousepvt/slack@v1.3.2
       with: 
         status: ${{ job.status }}
       if: always()
