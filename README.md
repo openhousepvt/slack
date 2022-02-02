@@ -92,14 +92,14 @@ following as the last step of the job:
 The default Slack channel for the configured webhook can be overridden
 using either another channel name `#channel` or a username `@username`.
 
-    - uses: act10ns/slack@v1
+    - uses: openhousepvt/slack@v1.3.2
       with: 
         status: ${{ job.status }}
         channel: '#workflows'
 
 or
 
-    - uses: act10ns/slack@v1
+    - uses: openhousepvt/slack@v1.3.2
       with: 
         status: ${{ job.status }}
         channel: '@nick'
@@ -140,7 +140,7 @@ or
           - name: Publish Image
             id: docker-push
             run: docker push $REPOSITORY_URL/$IMAGE_NAME
-          - uses: act10ns/slack@v1
+          - uses: openhousepvt/slack@v1.3.2
             with:
               status: ${{ job.status }}
               version: '1.0.0'
